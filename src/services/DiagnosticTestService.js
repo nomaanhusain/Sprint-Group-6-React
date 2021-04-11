@@ -8,5 +8,8 @@ class DiagnosticTestService{
     deleteTest(testId){
         return axios.delete(DIAG_TEST_BASE_URL+'removeTest/'+testId);
     }
+    updateTest(utest){
+        return axios.put(DIAG_TEST_BASE_URL+'updateTest',utest);
+    }
 }
 export default new DiagnosticTestService()

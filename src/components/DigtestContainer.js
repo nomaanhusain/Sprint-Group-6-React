@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { connect } from 'react-redux'
 import {fetchDigtest} from '../redux'
 import {Button, Grid, Grow, Tab, Typography, Zoom} from '@material-ui/core'
@@ -9,15 +9,21 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
+import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DiagnosticTestService from '../services/DiagnosticTestService';
+
+
+
 const gridStyle={margin:'270px auto'};
 
 function DigtestContainer ({ digtestData, fetchDigtest }) {
     useEffect(() => {
       fetchDigtest()
     }, [])
+
+    
     // Check if data is loading and display a loading circle while it is happening
     return digtestData.loading ? (
         <Grid style={gridStyle}>
@@ -50,7 +56,6 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
                                 <TableCell> Test Price</TableCell>
                                 <TableCell>Normal Value</TableCell>
                                 <TableCell>Unit</TableCell>
-                                <TableCell>Centers Associated</TableCell>
                                 <TableCell>Action</TableCell>
                             </TableRow>
                         </TableHead>
@@ -66,7 +71,6 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
                                         <TableCell>{digtest.testPrice}</TableCell>
                                         <TableCell>{digtest.normalValue}</TableCell>
                                         <TableCell>{digtest.units}</TableCell>
-                                        <TableCell>{digtest.diagnosticCenter.map(center=><Typography>{center.name}</Typography>)}</TableCell>
                                           <TableCell>
                                               {/*Delete Button to delete the record*/}
                                                 <Button
