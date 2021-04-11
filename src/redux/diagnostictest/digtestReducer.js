@@ -4,13 +4,17 @@ import {
     FETCH_DIGTEST_FAILURE
   } from './digtestTypes'
 
+  // Initial stage of object
   const initialState = {
     loading: false,
     digtests: [],
     error: ''
   }
 
+  // Reducer for diagnostic test, this determine changes to diagnostic test, uses action to determine change
+  //Takes previous state and action to determine next state
   const digtestReducer = (state = initialState, action) => {
+    // Switch Case to determine what is happenind in the action and take step accordingly
     switch (action.type) {
       case FETCH_DIGTEST_REQUEST:
         return {

@@ -18,11 +18,12 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
     useEffect(() => {
       fetchDigtest()
     }, [])
-
+    // Check if data is loading and display a loading circle while it is happening
     return digtestData.loading ? (
         <Grid style={gridStyle}>
           <CircularProgress color="secondary" />
           </Grid>
+          // Check if there is any error and display on screen
         ) : digtestData.error ? (
             <Grid style={gridStyle}>
             <h2 className='text-danger'>{digtestData.error}</h2>
@@ -34,9 +35,11 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
                
              </div>
              <br></br>
-             
+             {/* Zoom effect for the table display */}
              <Zoom in={true} style={{transitionDelay:'500ms'}}>
+               {/* Elevation for the table */}
              <Paper elevation={20}>
+               {/* Building the table */}
              <TableContainer>
                     <Table aria-label="simple table">
                     <caption>Table of all the Diagnostic Test in the system</caption>
@@ -54,6 +57,7 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
                          <TableBody> 
                             {digtestData &&
                                 digtestData.digtests &&
+                                // Map is used to destructure the list of all diagnostic tests
                                 digtestData.digtests.map(
                                     digtest=>
                                     <TableRow key={digtest.testId}>
@@ -63,8 +67,8 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
                                         <TableCell>{digtest.normalValue}</TableCell>
                                         <TableCell>{digtest.units}</TableCell>
                                         <TableCell>{digtest.diagnosticCenter.map(center=><Typography>{center.name}</Typography>)}</TableCell>
-                                          <TableCell>  
-                                                 {/* <button style={{marginLeft: "10px"}} onClick={()=>this.deleteUser(user.usersId)} className="btn btn-danger">Delete </button>   */}
+                                          <TableCell>
+                                              {/*Delete Button to delete the record*/}
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
@@ -99,7 +103,7 @@ const mapStateToProps = state => {
       fetchDigtest: () => dispatch(fetchDigtest())
     }
   }
-  
+  // To connect redux with react
   export default connect(
     mapStateToProps,
     mapDispatchToProps

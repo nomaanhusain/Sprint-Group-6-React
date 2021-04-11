@@ -16,7 +16,6 @@ class CreateTestResultComponent extends Component {
              condition:'',
              errorExists:false
         }
-        // this.saveTestResult=this.saveTestResult.bind(this);
         this.changeConditionHandler=this.changeConditionHandler.bind(this);
         this.changeTestReadingHandler=this.changeTestReadingHandler.bind(this);
     }
@@ -27,24 +26,27 @@ class CreateTestResultComponent extends Component {
             testReading:this.state.testReading,
             condition:this.state.condition
         }
+    //This field is required so if unchanged, throw error
     if(this.state.testReading===0){
-        this.setState({errorExists:true},()=>{console.log(this.state.errorExists)});
+        this.setState({errorExists:true});
         
     }else{
+        //Backend call to add test result to database
         TestResultService.addTestResult(testres).then(res=>{
             this.props.history.push('/testresult');
         });
     }
     }
-
+    //Route back to test result page
     cancel(){
         this.props.history.push('/testresult');
     }
     
+    //Handler for text field
     changeConditionHandler =(event)=>{
         this.setState({condition:event.target.value});
     }
-
+    //Handler for text field
     changeTestReadingHandler=(event)=>{
         this.setState({testReading:event.target.value})
     }
@@ -64,19 +66,21 @@ class CreateTestResultComponent extends Component {
                                
                                 <div className = "card-body"> 
                                 <form>
-
                                     <div className = "form-group">
                                     <TextField id="outlined-basic" label="Test Reading"
                                      style={{marginBottom : 20}}
                                      fullWidth={true}
+                                    //  To automatically highlight this field when page loads
                                      autoFocus={true}
                                      required
+                                    //  To ensure that input is a number
                                      type="number"
                                      error={this.state.errorExists}
                                       onChange={this.changeTestReadingHandler} />
                                     </div>
 
                                     <div className = "form-group">
+                                    {/* List of condition */}
                                     <InputLabel id="demo-simple-select-label">Contition</InputLabel>
                                     <Select
                                      labelId="demo-simple-select-label"
@@ -90,11 +94,13 @@ class CreateTestResultComponent extends Component {
                                         <MenuItem value='Critical'>Critical</MenuItem>
                                     </Select>
                                     </div>
+                                    {/* Save button */}
                                     <Button variant="contained"
                                         color="primary"
                                         size="medium"
                                         startIcon={<SaveIcon />} 
                                         onClick={this.saveTestResult}>Save</Button>
+                                        {/* Cancel Button */}
                                      <Button variant="contained" 
                                      color="secondary" 
                                      onClick={this.cancel.bind(this)} 
@@ -108,7 +114,7 @@ class CreateTestResultComponent extends Component {
                     </div>
 
             </div>
-            </div>
+        </div>
         )
     }
 }
