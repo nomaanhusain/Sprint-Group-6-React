@@ -70,6 +70,7 @@ export default function ButtonAppBar() {
                 <MenuItem onClick={handleClose}><Button href="http://localhost:3000/user">User</Button></MenuItem>
                 <MenuItem onClick={handleClose}><Button href="http://localhost:3000/test">Diagnostic Test</Button></MenuItem>
                 <MenuItem onClick={handleClose}><Button href="http://localhost:3000/testresult">Test Result</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button href="http://localhost:3000/centers">Test Center</Button></MenuItem>
               </Menu>
               </div>
           <Typography variant="h6" className={classes.title}>

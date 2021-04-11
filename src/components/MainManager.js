@@ -8,6 +8,11 @@ import CreateUserComponent from './CreateUserComponent'
 import CreateDiagTestComponent from './CreateDiagTestComponent'
 import ListTestResultComponent from './ListTestResultComponent'
 import CreateTestResultComponent from './CreateTestResultComponent'
+import ListCenterComponent from './ListCenterComponent';
+import CreateCenterComponent from './CreateCenterComponent';
+
+import ViewCenterComponent from './ViewCenterComponent';
+import FooterComponent from './FooterComponent';
 class MainManager extends Component {
     render() {
         return (
@@ -23,8 +28,12 @@ class MainManager extends Component {
                 <Route path = "/add-test" component = {CreateDiagTestComponent}></Route>
                 <Route path="/testresult" component = {ListTestResultComponent}></Route>
                 <Route path="/add-testresult" component = {CreateTestResultComponent}></Route>
+                <Route path = "/centers" component = {ListCenterComponent}></Route>
+                <Route path = "/add-center/:centerId" component = {CreateCenterComponent}></Route>
+                <Route path = "/view-center/:centerId" component = {ViewCenterComponent}></Route>
                 </Switch>
                </Router>
+               <FooterComponent/>
             </>
         )
     }
