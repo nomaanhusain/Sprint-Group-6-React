@@ -71,6 +71,11 @@ export default function ButtonAppBar() {
                 <MenuItem onClick={handleClose}><Button href="http://localhost:3000/test">Diagnostic Test</Button></MenuItem>
                 <MenuItem onClick={handleClose}><Button href="http://localhost:3000/testresult">Test Result</Button></MenuItem>
                 <MenuItem onClick={handleClose}><Button href="http://localhost:3000/centers">Test Center</Button></MenuItem>
+
+                <MenuItem onClick={handleClose}><Button href="http://localhost:3000/addAppointment">Add Appointment</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button href="http://localhost:3000/getAppointmentForm">View Appointment list</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button href="http://localhost:3000/viewPatientForm">View Patient Appointment</Button></MenuItem>
+                <MenuItem onClick={handleClose}><Button href="http://localhost:3000/viewAppointmentFormById">View Appointment By Id</Button></MenuItem>
               </Menu>
               </div>
           <Typography variant="h6" className={classes.title}>

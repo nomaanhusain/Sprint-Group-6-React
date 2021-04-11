@@ -10,7 +10,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
  class CreateDiagTestComponent extends Component {
     constructor(props) {
         super(props)
-    
+        //All the states in this component
         this.state = {
              testName:'',
              testPrice:0,

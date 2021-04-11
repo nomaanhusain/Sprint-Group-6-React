@@ -10,9 +10,18 @@ import ListTestResultComponent from './ListTestResultComponent'
 import CreateTestResultComponent from './CreateTestResultComponent'
 import ListCenterComponent from './ListCenterComponent';
 import CreateCenterComponent from './CreateCenterComponent';
-
 import ViewCenterComponent from './ViewCenterComponent';
 import FooterComponent from './FooterComponent';
+
+import ViewAppointment from '../components/ViewAppointment';
+import AddAppointmentComponent from '../components/AddAppointmentComponent';
+import ListAppointment from '../components/ListAppointment';
+import UpdateAppointment from '../components/UpdateAppointment';
+import ViewPatient from '../components/ViewPatient';
+import viewAppointmentByPname from '../components/viewAppointmentByPname';
+import viewAppointmentById from '../components/viewAppointmentById';
+import AllAppointmentList from '../components/AllAppointmentList';
+
 class MainManager extends Component {
     render() {
         return (
@@ -31,6 +40,15 @@ class MainManager extends Component {
                 <Route path = "/centers" component = {ListCenterComponent}></Route>
                 <Route path = "/add-center/:centerId" component = {CreateCenterComponent}></Route>
                 <Route path = "/view-center/:centerId" component = {ViewCenterComponent}></Route>
+
+                <Route path = "/addAppointment" exact component = {AddAppointmentComponent}></Route>
+                <Route path = "/getAppointments/:date/:status" component = {AllAppointmentList}></Route>
+                <Route path = "/viewAppointment/:id" component = {ViewAppointment}></Route>
+                <Route path = "/getAppointmentForm" component = {ListAppointment}></Route>
+                <Route path = "/updateAppointment/:id" component = {UpdateAppointment}></Route>
+                <Route path = "/viewPatientForm" component = {ViewPatient}></Route>
+                <Route path = "/viewAppointmentByPname/:name" component = {viewAppointmentByPname}></Route>
+                <Route path = "/viewAppointmentFormById" component = {viewAppointmentById}></Route>
                 </Switch>
                </Router>
                <FooterComponent/>
