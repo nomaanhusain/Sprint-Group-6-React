@@ -33,6 +33,10 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
             normalValue:this.state.normalValue,
             units:this.state.units
         }
+        if(this.state.testName===''||this.state.testPrice===0||this.state.normalValue===''||this.state.units===''){
+            this.setState({errorState:true,
+            error:'Please fill required data'});
+        }else{
         DiagnosticTestService.addTest(test).then(res=>{
             this.props.history.push('/test');
         }).catch(error=>{
@@ -41,6 +45,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                 errorState:true
             });
       });
+    }
     }
     cancel(){
         this.props.history.push('/test');

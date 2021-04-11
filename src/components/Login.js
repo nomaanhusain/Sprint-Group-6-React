@@ -8,6 +8,9 @@ import LoginService from '../services/LoginService';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import axios from 'axios';
+
+//RegEx to validate if password is in correct format
+const passwordValidator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#\$%\^\&*\)\(+=._-]{8,}$/;
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -16,7 +19,9 @@ class Login extends Component {
              username:'',
              password:'',
              error:'',
+             errorText:'',
              errorState:false,
+             errorStatePass:false,
              hidden:true
         }
         this.handleUserChange=this.handleUserChange.bind(this);
@@ -31,7 +36,14 @@ class Login extends Component {
         this.setState({username:event.target.value})
     }
     handlePassChange=(event)=>{
-        this.setState({password:event.target.value})
+        if(passwordValidator.test(event.target.value)){
+            this.setState({errorText:'',
+            password: event.target.value,
+        errorStatePass:false})
+        }else{
+            this.setState({errorText:'Password should be 8 characters with an Uppercase and Lowercase character and a Number',
+        errorStatePass:true})
+        }
     }
     handleLogClick = (u)=>{
         u.preventDefault()
@@ -82,7 +94,8 @@ class Login extends Component {
                         <Grid style={typeStyle}>
                         <TextField label='Password' placeholder='Enter password'
                          type={this.state.hidden? 'password' : 'text'} 
-                         error={this.state.errorState}
+                         error={this.state.errorStatePass}
+                         helperText={this.state.errorText}
                           onChange={this.handlePassChange}
                           InputProps={{ // This is where the toggle button is added.
                             endAdornment: (

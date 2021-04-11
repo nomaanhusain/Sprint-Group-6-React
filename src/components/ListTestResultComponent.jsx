@@ -33,11 +33,12 @@ class ListTestResultComponent extends Component {
     
         this.state = {
              TestResults:[],
+             errorExists:false,
              noError:true,
              errorMessage:'',
              openDialog:false,
              testResultId:0,
-             testReading:'',
+             testReading:0,
              condition:''
         }
         this.addTestResult=this.addTestResult.bind(this);
@@ -82,12 +83,16 @@ class ListTestResultComponent extends Component {
             condition:this.state.condition
         }
         
-        
+        if(this.state.testReading===0){
+            this.setState({errorExists:true},()=>{console.log(this.state.errorExists)});
+    }else{
         TestResultService.updateTestResult(testres).then(res=>{
-                this.props.history.push('/testresult')
+            this.props.history.push('/testresult')
         });
         this.handleCloseDialog();
         window.location.reload();
+    }
+
     }
 
     changeConditionHandler =(event)=>{
@@ -167,6 +172,7 @@ class ListTestResultComponent extends Component {
                                                     style={{marginBottom : 20}}
                                                     fullWidth={true}
                                                     autoFocus={true}
+                                                    error={this.state.errorExists}
                                                     type="number"
                                                     onChange={this.changeTestReadingHandler} />
                                     

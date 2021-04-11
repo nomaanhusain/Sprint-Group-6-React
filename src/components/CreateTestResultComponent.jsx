@@ -13,9 +13,10 @@ class CreateTestResultComponent extends Component {
     
         this.state = {
              testReading:0,
-             condition:''
+             condition:'',
+             errorExists:false
         }
-        this.saveTestResult=this.saveTestResult.bind(this);
+        // this.saveTestResult=this.saveTestResult.bind(this);
         this.changeConditionHandler=this.changeConditionHandler.bind(this);
         this.changeTestReadingHandler=this.changeTestReadingHandler.bind(this);
     }
@@ -26,9 +27,14 @@ class CreateTestResultComponent extends Component {
             testReading:this.state.testReading,
             condition:this.state.condition
         }
+    if(this.state.testReading===0){
+        this.setState({errorExists:true},()=>{console.log(this.state.errorExists)});
+        
+    }else{
         TestResultService.addTestResult(testres).then(res=>{
             this.props.history.push('/testresult');
         });
+    }
     }
 
     cancel(){
@@ -66,7 +72,7 @@ class CreateTestResultComponent extends Component {
                                      autoFocus={true}
                                      required
                                      type="number"
-                                     error={this.state.errorState}
+                                     error={this.state.errorExists}
                                       onChange={this.changeTestReadingHandler} />
                                     </div>
 

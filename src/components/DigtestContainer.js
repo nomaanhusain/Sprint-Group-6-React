@@ -68,7 +68,7 @@ function DigtestContainer ({ digtestData, fetchDigtest }) {
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
-                                                    onClick={DiagnosticTestService.deleteTest(digtest.testId)}
+                                                    onClick={()=>DiagnosticTestService.deleteTest(digtest.testId)}
                                                     href="http://localhost:3000/test"
                                                     startIcon={<DeleteIcon />}
                                                     >
