@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Provider } from "react-redux";
 import store from "../redux/store";
 import DigtestContainer from './DigtestContainer'
-import {Button} from '@material-ui/core'
+import {Button, IconButton} from '@material-ui/core'
 import ButtonAppBar from './HeaderComponent'
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
+import UpdateIcon from '@material-ui/icons/Update';
 export class DiagTestComponent extends Component {
     constructor(props) {
         super(props)
@@ -14,10 +15,14 @@ export class DiagTestComponent extends Component {
              
         }
         this.addDiagTest=this.addDiagTest.bind(this);
+        this.updateDiagTest=this.updateDiagTest.bind(this);
         this.toTest=this.toTest.bind(this);
     }
     addDiagTest(){
         this.props.history.push('/add-test');
+    }
+    updateDiagTest(){
+        this.props.history.push('/update-test');
     }
     toTest(){
         this.props.history.push('/test');
@@ -37,8 +42,7 @@ export class DiagTestComponent extends Component {
                             Add Test
                          </Button>
                       
-                    
-                 
+                        <IconButton color="primary" onClick={this.updateDiagTest}><UpdateIcon/></IconButton>
                  <br></br>
                  <Provider store={store}>
                  <DigtestContainer/>

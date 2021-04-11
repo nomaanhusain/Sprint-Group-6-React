@@ -21,6 +21,7 @@ import ViewPatient from '../components/ViewPatient';
 import viewAppointmentByPname from '../components/viewAppointmentByPname';
 import viewAppointmentById from '../components/viewAppointmentById';
 import AllAppointmentList from '../components/AllAppointmentList';
+import UpdateDiagTestComponent from './UpdateDiagTestComponent'
 
 class MainManager extends Component {
     render() {
@@ -35,8 +36,11 @@ class MainManager extends Component {
                 <Route path = "/add-user" component = {CreateUserComponent}></Route>
                 <Route path="/test"  component = {DiagTestComponent}></Route>
                 <Route path = "/add-test" component = {CreateDiagTestComponent}></Route>
+                <Route path = "/update-test" component = {UpdateDiagTestComponent}></Route>
                 <Route path="/testresult" component = {ListTestResultComponent}></Route>
                 <Route path="/add-testresult" component = {CreateTestResultComponent}></Route>
+
+
                 <Route path = "/centers" component = {ListCenterComponent}></Route>
                 <Route path = "/add-center/:centerId" component = {CreateCenterComponent}></Route>
                 <Route path = "/view-center/:centerId" component = {ViewCenterComponent}></Route>

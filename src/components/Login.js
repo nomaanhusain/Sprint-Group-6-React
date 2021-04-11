@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link, InputAdornment, IconButton } from '@material-ui/core'
+import { Grid,Paper, Avatar, TextField, Button, Typography,Link, InputAdornment, IconButton, Tooltip } from '@material-ui/core'
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import red from '@material-ui/core/colors/red'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -115,6 +115,7 @@ class Login extends Component {
                             endAdornment: (
                                 // Put toggle button at end
                               <InputAdornment position="end">
+                                  <Tooltip title="Show/Hide Password" arrow>
                                 <IconButton
                                   aria-label="toggle password visibility"
                                   onClick={this.handleToggle}
@@ -122,6 +123,7 @@ class Login extends Component {
                                     {/* Ternary operator for toggling visibility icon */}
                                   {this.state.hidden ? <VisibilityIcon /> : <VisibilityOffIcon />}
                                 </IconButton>
+                                </Tooltip>
                               </InputAdornment>
                             )
                           }}

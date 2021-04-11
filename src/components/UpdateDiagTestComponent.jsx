@@ -1,43 +1,43 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import {Button, Paper} from '@material-ui/core'
-import SaveIcon from '@material-ui/icons/Save'
 import Typography from '@material-ui/core/Typography';
 import DiagnosticTestService from '../services/DiagnosticTestService'
- class CreateDiagTestComponent extends Component {
+import UpdateIcon from '@material-ui/icons/Update';
+export class UpdateDiagTestComponent extends Component {
     constructor(props) {
         super(props)
-        //All the states in this component
+    
         this.state = {
-             testName:'',
-             testPrice:0,
-             normalValue:'',
-             units:'',
-             error:'',
-             errorState:false
+            testId:0,
+            testName:'',
+            testPrice:0,
+            normalValue:'',
+            units:'',
+            error:'',
+            errorState:false
         }
-        this.changeTestNameHandler=this.changeTestNameHandler.bind(this);
-        this.changeTestPriceHandler=this.changeTestPriceHandler.bind(this);
-        this.changeNormalValueHandler=this.changeNormalValueHandler.bind(this);
-        this.changeUnitHandler=this.changeUnitHandler.bind(this);
+        
     }
-    // Save new diagnostic test
-    saveTest =(u)=>{
+    
+    // Update new diagnostic test
+    updateTest =(u)=>{
         u.preventDefault()
         // Object for diagnostic test
         let test={
+            testId:this.state.testId,
             testName:this.state.testName,
             testPrice:this.state.testPrice,
             normalValue:this.state.normalValue,
             units:this.state.units
         }
         // Check all required fields are filled if not raise error
-        if(this.state.testName===''||this.state.testPrice===0||this.state.normalValue===''||this.state.units===''){
+        if(this.state.testId===0||this.state.testName===''||this.state.testPrice===0||this.state.normalValue===''||this.state.units===''){
             this.setState({errorState:true,
             error:'Please fill required data'});
         }else{
             // Call to backend 
-        DiagnosticTestService.addTest(test).then(res=>{
+        DiagnosticTestService.updateTest(test).then(res=>{
             this.props.history.push('/test');
         }).catch(error=>{
             // Raise error if some error comes from backend
@@ -52,22 +52,27 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
         // Route to test
         this.props.history.push('/test');
     }
+    changeTestIdHandler=(event)=>{
+        this.setState({testId:event.target.value});
+    }
     // Handle change in text field
-    changeTestNameHandler(event){
+    changeTestNameHandler=(event)=>{
         this.setState({testName:event.target.value});
     }
     // Handle change in text field
-    changeTestPriceHandler(event){
+    changeTestPriceHandler=(event)=>{
         this.setState({testPrice:event.target.value});
     }
     // Handle change in text field
-    changeNormalValueHandler(event){
+    changeNormalValueHandler=(event)=>{
         this.setState({normalValue:event.target.value});
     }
     // Handle change in text field
-    changeUnitHandler(event){
+    changeUnitHandler=(event)=>{
         this.setState({units:event.target.value});
     }
+
+
     render() {
         return (
             <div>
@@ -84,12 +89,25 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                 <div className = "card-body"> 
                                 <form>
 
+
+                                <div className = "form-group">
+                                    {/* Text Field for Test Name */}
+                                    <TextField id="outlined-basic" label="Test Id"
+                                    placeholder="Enter ID to be updated"
+                                     style={{marginBottom : 20}}
+                                     type="number"
+                                     fullWidth={true}
+                                     autoFocus={true}
+                                     required
+                                     error={this.state.errorState}
+                                      onChange={this.changeTestIdHandler} />
+                                    </div>
+
                                     <div className = "form-group">
                                     {/* Text Field for Test Name */}
                                     <TextField id="outlined-basic" label="Test Name"
                                      style={{marginBottom : 20}}
                                      fullWidth={true}
-                                     autoFocus={true}
                                      required
                                      error={this.state.errorState}
                                       onChange={this.changeTestNameHandler} />
@@ -133,8 +151,8 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                         color="primary"
                                         size="medium"
                                         // Icon for the button
-                                        startIcon={<SaveIcon />} 
-                                        onClick={this.saveTest}>Save</Button>
+                                        startIcon={<UpdateIcon />} 
+                                        onClick={this.updateTest}>Save</Button>
                                      <Button variant="contained" 
                                      color="secondary" 
                                      onClick={this.cancel.bind(this)} 
@@ -154,4 +172,4 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
     }
 }
 
-export default CreateDiagTestComponent
+export default UpdateDiagTestComponent
