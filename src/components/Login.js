@@ -82,7 +82,7 @@ class Login extends Component {
         //Style properties for different component
         const paperStyle={padding :20,height:'70vh',width:320, margin:"70px auto"}
         const avatarStyle={backgroundColor:red[400]}
-        const buttonStyle={margin:'8px 0'}
+        const buttonStyle={margin:'8px 0',background:'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}
         const typeStyle={margin : '15px 0'}
         return (
             <div>
@@ -138,7 +138,8 @@ class Login extends Component {
                             }
                             label="Remember me"
                          />
-                        <Button type='submit' color='primary' 
+                        <Button type='submit' 
+                        color='primary' 
                         variant="contained" 
                         style={buttonStyle} 
                         onClick={this.handleLogClick} 

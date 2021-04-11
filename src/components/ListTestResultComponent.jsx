@@ -133,6 +133,7 @@ class ListTestResultComponent extends Component {
              {/* Elevated look for table */}
          <Paper elevation={20}>
         {this.state.noError &&
+        // Table creation if no error is found
          <TableContainer>
                 <Table aria-label="simple table">
                 <caption>Table of all the Test Result in the system</caption>
@@ -154,7 +155,7 @@ class ListTestResultComponent extends Component {
                                     {/* <TableCell>{user.role}</TableCell> */}
                                       <TableCell>  
                                         {/*Tooltip is used to add tips on hover over the button  */}
-                                      <Tooltip title="Delete Test Result">
+                                      <Tooltip title="Delete Test Result" arrow>
                                             <IconButton
                                                 color="secondary"
                                                 onClick={()=>this.deleteTestResult(testresult.testResultId)}
@@ -163,7 +164,7 @@ class ListTestResultComponent extends Component {
                                                     <DeleteIcon />
                                             </IconButton>
                                             </Tooltip>
-                                            <Tooltip title="Update Test Result">
+                                            <Tooltip title="Update Test Result" arrow>
                                             <IconButton
                                                 color="primary"
                                                 onClick={()=>this.handleOpenDialog(testresult.testResultId)}
@@ -184,6 +185,7 @@ class ListTestResultComponent extends Component {
                                                     style={{marginBottom : 20}}
                                                     fullWidth={true}
                                                     autoFocus={true}
+                                                    required
                                                     error={this.state.errorExists}
                                                     type="number"
                                                     onChange={this.changeTestReadingHandler} />
