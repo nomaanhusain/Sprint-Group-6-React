@@ -24,6 +24,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
+import { ThreeSixty } from '@material-ui/icons';
 const gridStyle={margin:'250px auto'};
 
 class ListTestResultComponent extends Component {
@@ -33,7 +34,6 @@ class ListTestResultComponent extends Component {
         this.state = {
              TestResults:[],
              noError:true,
-             errorState:false,
              errorMessage:'',
              openDialog:false,
              testResultId:0,
@@ -81,16 +81,13 @@ class ListTestResultComponent extends Component {
             testReading:this.state.testReading,
             condition:this.state.condition
         }
-        if(this.state.testReading===null){
-            this.setState({errorState:true});
-        }
-        if(!this.state.errorState){
+        
+        
         TestResultService.updateTestResult(testres).then(res=>{
                 this.props.history.push('/testresult')
         });
         this.handleCloseDialog();
         window.location.reload();
-    }
     }
 
     changeConditionHandler =(event)=>{
@@ -170,8 +167,6 @@ class ListTestResultComponent extends Component {
                                                     style={{marginBottom : 20}}
                                                     fullWidth={true}
                                                     autoFocus={true}
-                                                    required
-                                                    error={this.state.errorState}
                                                     type="number"
                                                     onChange={this.changeTestReadingHandler} />
                                     

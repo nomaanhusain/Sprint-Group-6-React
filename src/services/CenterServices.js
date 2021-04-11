@@ -1,5 +1,5 @@
 import axios from 'axios'
-const CENTER_BASE_URL='http://localhost:9001//hcdcc/centers';
+const CENTER_BASE_URL='http://localhost:9000/hcdcc/centers';
 class CenterServices{
     getAllCenters(){
         return axios.get(CENTER_BASE_URL)

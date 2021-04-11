@@ -31,19 +31,11 @@ function UsersContainer ({ userData, fetchUsers }) {
         </Grid> 
       ) : (
         <div className="container">
-        {/* <Typography variant="h3" component="h2" align="center" gutterBottom> 
-        User List
-        </Typography>*/}
+       
         <div className = "row">
-            {/* <Button variant="contained" 
-                    color="secondary"
-                    style={{width:200, height:35}}
-                 startIcon={<SaveIcon />} onClick={this.addUser}> 
-                 Add Employee
-                 </Button>*/}
+            
          </div>
          <br></br>
-         {/* <div className = "row"> */}
          <Zoom in={true} style={{transitionDelay:'500ms'}}>
          <Paper elevation={20}>
          <TableContainer>
