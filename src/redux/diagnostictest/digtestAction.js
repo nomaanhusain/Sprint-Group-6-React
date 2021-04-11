@@ -4,10 +4,12 @@ import {
   FETCH_DIGTEST_SUCCESS,
   FETCH_DIGTEST_FAILURE
 } from './digtestTypes'
-
-
 //Action for diagnostic test
-//This will determine for action will occour
+
+
+//This will determine what actions objects will be called
+//This function is used to perform API calls and dispatch action
+//This function is used as action using thunk
 export const fetchDigtest = () => {
     return (dispatch)=>  {
       dispatch(fetchDigtestRequest())
@@ -22,14 +24,18 @@ export const fetchDigtest = () => {
     }
   }
 
-  //Different funtions to descirbe what is happening in the application
+  //Different funtions to descirbe the action in the application
+  //These functions are called action creators
+
   export const fetchDigtestRequest = () => {
+    //This object is an action in redux
     return {
       type: FETCH_DIGTEST_REQUEST
     }
   }
 
   export const fetchDigtestSuccess = digtests => {
+     //This object is an action in redux
     return {
       type: FETCH_DIGTEST_SUCCESS,
       // payload will be digtest if load was succesfull
@@ -38,6 +44,7 @@ export const fetchDigtest = () => {
   }
 
   export const fetchDigtestFailure = error => {
+     //This object is an action in redux
     return {
       type: FETCH_DIGTEST_FAILURE,
       // Payload will be the error message if load was unsucessfull

@@ -25,21 +25,26 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
         this.changeNormalValueHandler=this.changeNormalValueHandler.bind(this);
         this.changeUnitHandler=this.changeUnitHandler.bind(this);
     }
+    // Save new diagnostic test
     saveTest =(u)=>{
         u.preventDefault()
+        // Object for diagnostic test
         let test={
             testName:this.state.testName,
             testPrice:this.state.testPrice,
             normalValue:this.state.normalValue,
             units:this.state.units
         }
+        // Check all required fields are filled if not raise error
         if(this.state.testName===''||this.state.testPrice===0||this.state.normalValue===''||this.state.units===''){
             this.setState({errorState:true,
             error:'Please fill required data'});
         }else{
+            // Call to backend 
         DiagnosticTestService.addTest(test).then(res=>{
             this.props.history.push('/test');
         }).catch(error=>{
+            // Raise error if some error comes from backend
             this.setState({
                 error:error.response.data,
                 errorState:true
@@ -48,17 +53,22 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
     }
     }
     cancel(){
+        // Route to test
         this.props.history.push('/test');
     }
+    // Handle change in text field
     changeTestNameHandler(event){
         this.setState({testName:event.target.value});
     }
+    // Handle change in text field
     changeTestPriceHandler(event){
         this.setState({testPrice:event.target.value});
     }
+    // Handle change in text field
     changeNormalValueHandler(event){
         this.setState({normalValue:event.target.value});
     }
+    // Handle change in text field
     changeUnitHandler(event){
         this.setState({units:event.target.value});
     }
@@ -79,6 +89,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                 <form>
 
                                     <div className = "form-group">
+                                    {/* Text Field for Test Name */}
                                     <TextField id="outlined-basic" label="Test Name"
                                      style={{marginBottom : 20}}
                                      fullWidth={true}
@@ -89,6 +100,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                     </div>
 
                                     <div className = "form-group">
+                                    {/* Text Field for Test Price */}
                                     <TextField id="outlined-pass" 
                                     label="Test Price"
                                     style={{marginBottom:20}}
@@ -100,6 +112,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                     </div>
 
                                     <div className = "form-group">
+                                    {/* Text Field for Normal Value */}
                                     <TextField id="outlined-pass" 
                                     label="Normal Value"
                                     style={{marginBottom:20}}
@@ -110,6 +123,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                     </div>
 
                                     <div className = "form-group">
+                                    {/* Text Field for Units */}
                                     <TextField id="outlined-pass" 
                                     label="Units"
                                     style={{marginBottom:20}}
@@ -118,10 +132,11 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                     error={this.state.errorState}
                                     onChange={this.changeUnitHandler} />
                                     </div>
-
+                                    {/* Button to save */}
                                     <Button variant="contained"
                                         color="primary"
                                         size="medium"
+                                        // Icon for the button
                                         startIcon={<SaveIcon />} 
                                         onClick={this.saveTest}>Save</Button>
                                      <Button variant="contained" 
@@ -130,6 +145,7 @@ import DiagnosticTestService from '../services/DiagnosticTestService'
                                      style={{marginLeft: "10px"}}>Cancel</Button>
                                 </form>
                                 </div>
+                                {/* If any error occours this is displayed, else it stays null */}
                                 <Typography variant="caption" color="error">{this.state.error}</Typography>  
                                 </Paper> 
                              </div>

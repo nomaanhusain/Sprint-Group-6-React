@@ -19,7 +19,7 @@ class CreateTestResultComponent extends Component {
         this.changeConditionHandler=this.changeConditionHandler.bind(this);
         this.changeTestReadingHandler=this.changeTestReadingHandler.bind(this);
     }
-
+    // Save Test Result in database
     saveTestResult=(u)=>{
         u.preventDefault();
         let testres={
@@ -42,7 +42,7 @@ class CreateTestResultComponent extends Component {
         this.props.history.push('/testresult');
     }
     
-    //Handler for text field
+    //Handler for dropdown
     changeConditionHandler =(event)=>{
         this.setState({condition:event.target.value});
     }
@@ -89,6 +89,7 @@ class CreateTestResultComponent extends Component {
                                      required
                                      style={{width:200, height:35, marginBottom:20}}
                                      onChange={this.changeConditionHandler}>
+                                         {/* This will dropdown call changeConditonHandler */}
                                         <MenuItem value='Normal'>Normal</MenuItem>
                                         <MenuItem value='Needs Attention'>Needs Attention</MenuItem>
                                         <MenuItem value='Critical'>Critical</MenuItem>

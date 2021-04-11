@@ -30,7 +30,7 @@ const gridStyle={margin:'250px auto'};
 class ListTestResultComponent extends Component {
     constructor(props) {
         super(props)
-    
+        // States of this component
         this.state = {
              TestResults:[],
              errorExists:false,
@@ -47,13 +47,19 @@ class ListTestResultComponent extends Component {
         this.changeTestReadingHandler=this.changeTestReadingHandler.bind(this);
         this.handleCloseDialog=this.handleCloseDialog.bind(this);
     }
+    // For update dialog box
     handleOpenDialog(testId){
+        // Determines if dialog box will be displayed or not
         this.setState({openDialog:true,
+        // TestResult id is passed automatically, tells which record has to be updated 
         testResultId:testId});
     }
+    // For update dialog box
     handleCloseDialog(){
+        // Determines if dialog box will be displayed or not
         this.setState({openDialog:false});
     }
+    // Lifecycle method, automatically called after mounting of component
     componentDidMount(){
         TestResultService.getAllTestResult().then(res=>{
             this.setState({TestResults: res.data });
@@ -64,25 +70,26 @@ class ListTestResultComponent extends Component {
             })
         })
     }
+    // Delete a test result from record
     deleteTestResult(testId){
         TestResultService.deleteTestResult(testId).then( res => {
             this.props.history.push('/testresult');
         });
     }
-
+    // Route to add page
     addTestResult(){
         this.props.history.push('/add-testresult');
     }
-
+    // for updating
     updateTestResult=(t)=>{
         t.preventDefault();
-
+        // Object for backend
         let testres = {
             testResultId:this.state.testResultId,
             testReading:this.state.testReading,
             condition:this.state.condition
         }
-        
+        // This is required, so if default, raise error
         if(this.state.testReading===0){
             this.setState({errorExists:true},()=>{console.log(this.state.errorExists)});
     }else{
@@ -94,11 +101,11 @@ class ListTestResultComponent extends Component {
     }
 
     }
-
+    // TextField onchange handler
     changeConditionHandler =(event)=>{
         this.setState({condition:event.target.value});
     }
-
+    // TextField onchange handler
     changeTestReadingHandler=(event)=>{
         this.setState({testReading:event.target.value})
     }
@@ -111,7 +118,7 @@ class ListTestResultComponent extends Component {
                 Test Results
                 </Typography>
                 <div className="container">
-        
+                {/* Add Button */}
              <Button variant="contained" 
                     color="primary"
                     style={{width:200, height:35 ,margin:"25px"}}
@@ -121,7 +128,9 @@ class ListTestResultComponent extends Component {
         
          <br></br>
           <div className = "row">
+              {/* Zoom effect on table load */}
          <Zoom in={true} style={{transitionDelay:'500ms'}}>
+             {/* Elevated look for table */}
          <Paper elevation={20}>
         {this.state.noError &&
          <TableContainer>
@@ -144,7 +153,7 @@ class ListTestResultComponent extends Component {
                                     <TableCell>{testresult.condition}</TableCell>
                                     {/* <TableCell>{user.role}</TableCell> */}
                                       <TableCell>  
-                                             
+                                        {/*Tooltip is used to add tips on hover over the button  */}
                                       <Tooltip title="Delete Test Result">
                                             <IconButton
                                                 color="secondary"
@@ -162,12 +171,15 @@ class ListTestResultComponent extends Component {
                                                     <UpdateIcon />
                                             </IconButton>
                                             </Tooltip>
+                                            {/* For update dialog box */}
                                             <Dialog open={this.state.openDialog} onClose={this.handleCloseDialog} aria-labelledby="form-dialog-title">
                                             <DialogTitle id="form-dialog-title">Update Test Result</DialogTitle>
                                             <DialogContent>
+                                                {/* Sub-Heading for dialog box */}
                                                 <DialogContentText>
                                                     Update the current Test Result Data
                                                 </DialogContentText>
+                                                {/* Text Field for dialog box */}
                                                 <TextField id="outlined-basic" label="Test Reading"
                                                     style={{marginBottom : 20}}
                                                     fullWidth={true}
@@ -177,7 +189,7 @@ class ListTestResultComponent extends Component {
                                                     onChange={this.changeTestReadingHandler} />
                                     
 
-                                    
+                                                {/* Drop down for dialog box */}
                                                 <InputLabel id="demo-simple-select-label">Contition</InputLabel>
                                                     <Select
                                                         labelId="demo-simple-select-label"
@@ -191,8 +203,9 @@ class ListTestResultComponent extends Component {
                                                             <MenuItem value='Critical'>Critical</MenuItem>
                                                     </Select>
                                             </DialogContent>
+                                            {/* Actions for dialog box */}
                                             <DialogActions>
-                                                <Button onClick={this.handleCloseDialog} color="primary">
+                                                <Button onClick={this.handleCloseDialog} color="secondary">
                                                     Cancel
                                                 </Button>
                                                 <Button onClick={this.updateTestResult} color="primary">

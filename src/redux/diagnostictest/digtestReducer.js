@@ -15,6 +15,7 @@ import {
   //Takes previous state and action to determine next state
   const digtestReducer = (state = initialState, action) => {
     // Switch Case to determine what is happenind in the action and take step accordingly
+    //"state" updates according to what is returned below
     switch (action.type) {
       case FETCH_DIGTEST_REQUEST:
         return {
