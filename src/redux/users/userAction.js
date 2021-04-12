@@ -4,7 +4,12 @@ import {
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE
 } from './userTypes'
+//Action for user
 
+
+//This will determine what actions objects will be called
+//This function is used to perform API calls and dispatch action
+//This function is used as action using thunk
 export const fetchUsers = () => {
     return (dispatch)=>  {
       dispatch(fetchUsersRequest())
@@ -19,7 +24,9 @@ export const fetchUsers = () => {
     }
   }
 
+  //Action Creator
   export const fetchUsersRequest = () => {
+    //This object is an action in redux
     return {
       type: FETCH_USERS_REQUEST
     }
@@ -27,6 +34,7 @@ export const fetchUsers = () => {
   
   //Action Creator
   export const fetchUsersSuccess = users => {
+    //This object is an action in redux
     return {
       type: FETCH_USERS_SUCCESS,
       payload: users
@@ -35,6 +43,7 @@ export const fetchUsers = () => {
   
   //Action Creator
   export const fetchUsersFailure = error => {
+    //This object is an action in redux
     return {
       type: FETCH_USERS_FAILURE,
       payload: error

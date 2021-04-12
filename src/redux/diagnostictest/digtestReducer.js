@@ -16,7 +16,7 @@ import {
   //This is how redux becomes predictable, as reducers are pure functions, and do not 
   //perform any side effect, given the same object, they always return the same result
   const digtestReducer = (state = initialState, action) => {
-    // Switch Case to determine what is happenind in the action and take step accordingly
+    // Switch Case to determine what is happening in the action and take step accordingly
     //"state" updates according to what is returned below
     switch (action.type) {
       case FETCH_DIGTEST_REQUEST:
