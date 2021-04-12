@@ -13,6 +13,8 @@ import {
 
   // Reducer for diagnostic test, this determine changes to diagnostic test, uses action to determine change
   //Takes previous state and action to determine next state
+  //This is how redux becomes predictable, as reducers are pure functions, and do not 
+  //perform any side effect, given the same object, they always return the same result
   const digtestReducer = (state = initialState, action) => {
     // Switch Case to determine what is happenind in the action and take step accordingly
     //"state" updates according to what is returned below

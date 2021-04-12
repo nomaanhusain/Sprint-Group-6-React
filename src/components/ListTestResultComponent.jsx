@@ -90,7 +90,7 @@ class ListTestResultComponent extends Component {
         }
         // This is required, so if default, raise error
         if(this.state.testReading===0){
-            this.setState({errorExists:true},()=>{console.log(this.state.errorExists)});
+            this.setState({errorExists:true});
     }else{
         TestResultService.updateTestResult(testres).then(res=>{
             this.props.history.push('/testresult')
@@ -151,7 +151,7 @@ class ListTestResultComponent extends Component {
                                     <TableCell>{testresult.testResultId}</TableCell>
                                     <TableCell>{testresult.testReading}</TableCell>
                                     <TableCell>{testresult.condition}</TableCell>
-                                    {/* <TableCell>{user.role}</TableCell> */}
+                                    
                                       <TableCell>  
                                         {/*Tooltip is used to add tips on hover over the button  */}
                                       <Tooltip title="Delete Test Result" arrow>
